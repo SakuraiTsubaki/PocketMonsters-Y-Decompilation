@@ -4,6 +4,37 @@ This repository currently assumes **no local retail ROM, CCI, CIA, RomFS, ExeFS,
 
 This file is the master census for that work. A source being listed here does **not** mean every statement in it is correct. Claims are promoted into project documentation only after source-level review and, where possible, independent cross-checking.
 
+## Canonical regional research policy — Japanese edition as comparison origin
+
+This project performs an **exhaustive all-region investigation with the Japanese release as the comparison origin**.
+
+- The Japanese edition is the project's baseline coordinate for names, text, data, presentation, assets, behavior, distribution history, and version-difference tables.
+- This is a research convention, **not** an assumption that the Japanese build was necessarily released earlier, is always technically older, or is internally the source build for every asset.
+- Every evidenced retail region, language configuration, revision, update, demo, distribution environment, and platform-service dependency must be inventoried rather than collapsed into a generic “international version.”
+- Differences are recorded directionally as `Japanese baseline → target region/language/revision`, while version-exclusive gameplay differences such as X↔Y remain a separate comparison axis.
+- A localization difference is not automatically a region difference, and a region difference is not automatically a ROM/data difference. Text selection, font resources, locale flags, title/update identifiers, packaging/manual material, distribution infrastructure, and executable/data changes must be classified separately.
+- Shared byte-identical or behavior-identical material should be deduplicated in the research database while preserving every region/language/revision in provenance metadata.
+- Japanese official terminology and Japanese in-game text are preserved as primary comparison fields; current official Korean terminology is used for Korean-facing documentation, with historical Generation VI Korean wording separately recorded when it differs.
+- No regional build, language, revision, or patch may be declared identical to another without evidence. “Same as JP” is itself a finding that requires support.
+- Public-source conclusions must retain an evidence state: observed in implementation, documented by an official/contemporaneous source, independently cross-confirmed, or provisional pending stronger evidence.
+
+### Mandatory comparison dimensions
+
+For every data domain where public evidence exists, the census must attempt to distinguish:
+
+1. Japanese retail/base release.
+2. Other retail regions and their title/update identities.
+3. Every selectable or distributed language evidenced for Generation VI.
+4. Version-exclusive X versus Y behavior/data.
+5. Base revision versus every downloadable update revision.
+6. Demo/trial/special-distribution builds where applicable.
+7. Local wireless, Internet-service, event-distribution, and peripheral/service differences by territory and time period.
+8. Packaging/manual/official-web differences when they document rules, terminology, features, or content not recoverable elsewhere.
+9. Censorship, rating, legal, UI, font, text-layout, naming, audio, graphical, network, or event differences tied to territory or language.
+10. Later corrections or terminology changes, without retroactively rewriting what the Generation VI build actually contained.
+
+The regional census remains open until each investigated domain has an explicit matrix of **JP baseline / target region-language / revision / evidence / difference status / unresolved gaps**.
+
 ## Evidence classes
 
 - **A — implementation evidence:** public source code that parses, writes, validates, emulates, or edits the relevant structure.
