@@ -1,6 +1,6 @@
 # Pocket Monsters Y — Decompilation
 
-![Status](https://img.shields.io/badge/status-initial_setup-lightgrey)
+![Status](https://img.shields.io/badge/status-active_decompilation-brightgreen)
 ![Project](https://img.shields.io/badge/project-decompilation-blue)
 ![ROMs](https://img.shields.io/badge/ROM_binaries-not_included-success)
 
@@ -15,9 +15,11 @@ Decompilation and source-reconstruction project for **Pokémon Y**.
 
 ## 🚧 Status
 
-This repository is in its **initial setup** stage. Source reconstruction and documentation will be added progressively.
+**Active decompilation has started.** The current phase establishes exact target identity, reproducible manifests, and the initial Nintendo 3DS container / ExeFS / RomFS / executable map before source reconstruction proceeds.
 
-## 🗂️ Planned scope
+See [Decompilation Start](docs/DECOMPILATION_START.md) and [Project Status](docs/PROJECT_STATUS.md).
+
+## 🗂️ Scope
 
 - Code and executable analysis
 - Game data structures
@@ -26,23 +28,27 @@ This repository is in its **initial setup** stage. Source reconstruction and doc
 - Audio and resource formats
 - Maps and world data
 - Tools, notes, manifests, and verification data
+- X/Y and broader Generation VI cross-title comparison after independent verification
 
 ## 📌 Repository policy
 
-ROM images and redistributed ROM binaries are **not included**. The repository is intended for reconstructed source, extracted/recreated project data, tooling, analysis, and documentation.
+ROM images and redistributed ROM binaries are **not included**. The repository is intended for reconstructed source, extracted/recreated project data, tooling, analysis, and documentation. Local target binaries remain read-only sources.
 
 ## 🧭 Roadmap
 
-- [ ] Establish baseline version/revision inventory
-- [ ] Map executable and data structures
+- [x] Establish decompilation baseline and ROM-exclusion policy
+- [x] Add exact-target inventory tooling and tests
+- [ ] Establish baseline version/revision inventory from verified local targets
+- [ ] Map ExeFS, RomFS, executable, and data structures
 - [ ] Begin source reconstruction
 - [ ] Document assets, scripts, and formats
-- [ ] Add verification and reproducibility workflow
+- [ ] Expand automated verification and reproducibility workflow
 
 ## 📚 Documentation
 
 | Document | Purpose |
 | --- | --- |
+| [Decompilation start](docs/DECOMPILATION_START.md) | Active-work entry point and phase rules |
 | [Project status](docs/PROJECT_STATUS.md) | Current stage, coverage, validation level, and next milestones |
 | [Roadmap](docs/ROADMAP.md) | Recommended decompilation phases and long-term progression |
 | [Version coverage](docs/VERSIONS.md) | Regions, languages, revisions, updates, builds, and hashes |
@@ -53,13 +59,11 @@ ROM images and redistributed ROM binaries are **not included**. The repository i
 
 ## 🧱 Repository structure
 
-As real project material is reconstructed, the repository may grow into areas such as `src/`, `include/`, `data/`, `assets/`, `tools/`, `tests/`, and `manifests/`. Empty directory trees are not created only for appearance, and platform-specific structure should follow verified target architecture rather than another generation's layout.
-
-See [Repository Structure](docs/REPOSITORY_STRUCTURE.md) for the full organization policy.
+As verified material is reconstructed, the repository grows into `src/`, `include/`, `data/`, `assets/`, `tools/`, `tests/`, and `manifests/` as justified by observed target architecture. Empty directory trees are not created only for appearance.
 
 ## 🔬 Research and verification
 
-Research findings should identify the relevant target version or revision and clearly separate hypotheses from observed, reproduced, or matched results. Use the repository's Research and Verification issue templates when tracking substantial findings.
+Findings must identify the relevant target version or revision and clearly separate hypotheses from observed, reproduced, or matched results. Structures are promoted to **XY common** or **Generation VI common** only after independent confirmation in the relevant games.
 
 ## 🤝 Contributing
 
