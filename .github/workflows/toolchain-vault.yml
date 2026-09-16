@@ -1,0 +1,45 @@
+name: Persistent Gen VI toolchain vault
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/toolchain-vault.yml'
+      - 'tools/toolchain.lock.json'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  publish-toolchain:
+    runs-on: ubuntu-latest
+    env:
+      TAG: gen6-toolchain-v1
+      GH_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Download pinned toolchain assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p vault
+          fetch_verified() { local name="$1" url="$2" sha="$3"; curl --retry 3 --retry-all-errors -fL "$url" -o "vault/$name"; printf '%s  %s\n' "$sha" "vault/$name" | sha256sum -c -; }
+          fetch_verified ctrtool-v1.3.0-ubuntu_x86_64.zip "$(jq -r '.tools[] | select(.name=="ctrtool") | .url' tools/toolchain.lock.json)" "$(jq -r '.tools[] | select(.name=="ctrtool") | .sha256' tools/toolchain.lock.json)"
+          fetch_verified makerom-v0.19.0-ubuntu_x86_64.zip "$(jq -r '.tools[] | select(.name=="makerom") | .url' tools/toolchain.lock.json)" "$(jq -r '.tools[] | select(.name=="makerom") | .sha256' tools/toolchain.lock.json)"
+          fetch_verified ghidra_12.1.3_PUBLIC_20260817.zip "$(jq -r '.tools[] | select(.name=="Ghidra") | .url' tools/toolchain.lock.json)" "$(jq -r '.tools[] | select(.name=="Ghidra") | .sha256' tools/toolchain.lock.json)"
+          fetch_verified azahar.AppImage "$(jq -r '.tools[] | select(.name=="Azahar") | .url' tools/toolchain.lock.json)" "$(jq -r '.tools[] | select(.name=="Azahar") | .sha256' tools/toolchain.lock.json)"
+          curl --retry 3 --retry-all-errors -fL "$(jq -r '.tools[] | select(.name=="pk3DS") | .url' tools/toolchain.lock.json)" -o vault/pk3DS-6daaca934ca2284a73ab743bf89c848c57cd9de1.tar.gz
+          curl --retry 3 --retry-all-errors -fL "$(jq -r '.tools[] | select(.name=="3DSkit") | .url' tools/toolchain.lock.json)" -o vault/3DSkit-2fb6077654c6aa77348fd0c7c3cd8c108da86a74.tar.gz
+          cp tools/toolchain.lock.json vault/TOOLCHAIN_LOCK.json
+          (cd vault && sha256sum * > SHA256SUMS.txt)
+      - name: Publish repository-owned toolchain release
+        shell: bash
+        run: |
+          set -euo pipefail
+          if gh release view "$TAG" >/dev/null 2>&1; then
+            gh release upload "$TAG" vault/* --clobber
+          else
+            gh release create "$TAG" vault/* --target "$GITHUB_SHA" --title "Generation VI persistent toolchain v1" --notes "Pinned repository-owned toolchain vault for Generation VI reverse engineering. Contains ctrtool, makerom, Ghidra, Azahar, and pinned source snapshots of pk3DS and 3DSkit. ROMs, title keys, console keys, and copyrighted game images are not included."
+          fi
