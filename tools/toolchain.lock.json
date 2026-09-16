@@ -1,0 +1,12 @@
+{
+  "schema": "generation6.toolchain-lock.v1",
+  "release_tag": "gen6-toolchain-v1",
+  "tools": [
+    {"name":"ctrtool","version":"1.3.0","kind":"release-asset","url":"https://github.com/3DSGuy/Project_CTR/releases/download/ctrtool-v1.3.0/ctrtool-v1.3.0-ubuntu_x86_64.zip","sha256":"f553194b0ab2b539457160231cf5651c554e148f17ec960fae63424e82582aa8"},
+    {"name":"makerom","version":"0.19.0","kind":"release-asset","url":"https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.19.0/makerom-v0.19.0-ubuntu_x86_64.zip","sha256":"287b809dec064e0ad597e3d272c49ecb7eed41693d5ee6fef9d8a8aa24c2497e"},
+    {"name":"Ghidra","version":"12.1.3","kind":"release-asset","url":"https://github.com/NationalSecurityAgency/ghidra/releases/download/Ghidra_12.1.3_build/ghidra_12.1.3_PUBLIC_20260817.zip","sha256":"93a5d11a9ad510622acaaf908c556a7b9b764d338e78a7567f3689bf5081fd54"},
+    {"name":"Azahar","version":"2126.1.1","kind":"release-asset","url":"https://github.com/azahar-emu/azahar/releases/download/2126.1.1/azahar.AppImage","sha256":"e445dabc18fe7665867e24a18a78e24e133261a9cc320fae6a4a45bd2e7c4783"},
+    {"name":"pk3DS","version":"6daaca934ca2284a73ab743bf89c848c57cd9de1","kind":"source-snapshot","url":"https://codeload.github.com/kwsch/pk3DS/tar.gz/6daaca934ca2284a73ab743bf89c848c57cd9de1"},
+    {"name":"3DSkit","version":"2fb6077654c6aa77348fd0c7c3cd8c108da86a74","kind":"source-snapshot","url":"https://codeload.github.com/Tyulis/3DSkit/tar.gz/2fb6077654c6aa77348fd0c7c3cd8c108da86a74"}
+  ]
+}
